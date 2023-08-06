@@ -1,0 +1,18 @@
+config t
+ip routing
+vlan 25
+ name pnp.gov.ph
+int vlan 25
+ no shut
+ ip add 192.168.10.33 255.255.255.224
+ip dhcp excluded-add 192.168.10.33 192.168.10.40
+ip dhcp pool pnp.gov.ph
+ network 192.168.10.32 255.255.255.224
+ default-router 192.168.10.33
+ domain-name pnp.gov.ph
+ dns-server 10.42.1.10
+ option 150 ip 10.42.100.8
+int fa 0/5
+ swi ac vlan 25
+end
+clear ip dhcp binding *
