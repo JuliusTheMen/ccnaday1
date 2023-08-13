@@ -1,0 +1,190 @@
+Day 5:
+how to delete the vlan from previous config
+delete flash:vlan.dat
+
+from core taas
+create vlan
+conf t
+vlan 100
+exit
+
+int fa0/2
+sw mode acess
+sw access vlan 100
+
+trunking:
+802.1q
+both switches lagi
+==========
+conf t
+	int range fa0/10-12
+	switchport  trunk encapsulation dot1q
+	switchport mode trunk
+	switchport trunk allowed vlan 1,100  -- para eto lang yung  ma access na vlan
+=======================
+mawaalan stp
+conf t
+	no spanning-tree vlan 1
+	no spanning-tree vlan 100
+L2 Loop/ broadcast
+==================
+802.1d -STP(spanning protocol)
+
+conf t
+	spanning-tree vlan 1
+	spanning-tree vlan 100
+
+
+
+show ng port na root
+show spanning-tree vlan 1
+
+
+coretaas
+32769
+f025.726e.6b00
+
+corebaba
+32769
+f025.72e1.3880
+
+how to creat boss swithch
+conf t
+spanning-tree vlan 1 priority 8192
+
+how to creat boss switch balik
+conf t
+spanning-tree vlan 1 root primary
+
+==================
+
+802.1w (rapid-stp)
+
+boss
+conf t
+spanning-tree mode rapid-pvst
+
+TAAS: RootBridge
+config t
+spanning-tree Mode Rapid-pvst
+spanning-tree BackBoneFast
+spanning-tree portfast bpduguard default
+Int Range fa0/1-8
+   spanning-tree Portfast
+@BABA:
+config t
+spanning-tree Mode Rapid-pvst
+spanning-tree UplinkFast
+spanning-tree portfast bpduguard default
+Int Range fa0/1-8
+  spanning-tree Portfast
+end
+
+
+==================
+
+
+config t
+Int fa0/1
+switchport mode access
+switchport port-security
+switchport port-security mac-address Sticky
+switchport port-security maximum 1
+switchport port-security violation shutdown
+end
+
+do sh port-security address
+
+
+
+etherchannel
+conf t
+int range fa0/10-12
+shut
+channel-group 1 mode active
+channel-protocol lacp
+no shut
+int port-channel 1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+
+show etherchannel summary
+sh int po1 | inc BW
+
+
+
+
+
+
+
+swtaas
+corebaba
+edge
+
+
+erase startup-config
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+============
+both sa baba at taas
+conf t
+int range fa0/7-10
+switchport trunk encapsulation dot1q
+switchport mode trunk
+end
+sh int trunk
+==================
+core 
+conf t
+int vlan 1
+no shut
+ip add 10.0.0.2 255.0.0.0
+==================
+int fa0/12
+no switchport
+ip add 200.0.0.1 255.255.255.0
+
+
+ip routing
+router eigrp 100
+no auto-summary
+network 10.0.0.0
+network 200.0.0.0
+
+===
+pc static
+10.0.0.200
+10.0.0.1
+
+
+
+HSRP
+hot standby routing protocol
+
+conf t
+int vlan 1
+standby 1 ip 10.0.0.1
+standby 1 priority 100
+
+sh standby brief 
+
+
+
+
+
+
+

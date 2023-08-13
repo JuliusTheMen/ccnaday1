@@ -1,0 +1,7 @@
+ns
+_____
+www.gmail.com
+smtp.gmail.com
+imap.gmail.com
+pop.gmail.com
+MX
